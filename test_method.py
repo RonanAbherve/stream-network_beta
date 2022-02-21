@@ -51,13 +51,17 @@ from src_python.calibration_method import launch_dichotomy, objective_function
 from src_python.display_results import toolbox, results_plot
 os.chdir(cwd)
 
-#%% Paths
+#%% Changing path
 
-perso_path = "D:/Users/abherve/ONEDRIVE/OneDrive - Université de Rennes 1/PHD/8_paper/calibration/github/stream-network_beta/"
+work_folder = "D:/Users/abherve/GITHUB/StreamNetwork/"
+
+#%% Foxed paths
+
+perso_path = work_folder + "stream-network_beta/"
 
 data_path = perso_path + "/example_data/"
-out_path = perso_path + "/outputs_results/"
 bin_path = perso_path + "/external_bin/"
+out_path = work_folder + "/outputs_results/"
 
 #%% Inputs
 
