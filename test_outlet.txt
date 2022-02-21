@@ -1,0 +1,2 @@
+FID	Site	X	Y	Snap	Buffer
+1	Gael	312131	6793536	150	1
