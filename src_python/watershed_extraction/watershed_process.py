@@ -4,7 +4,6 @@ import os
 
 import geopandas as gpd
 from osgeo import gdal, osr
-from shutil import copyfile
 import numpy as np
 
 ### Method 1

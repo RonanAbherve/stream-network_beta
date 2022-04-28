@@ -7,7 +7,6 @@ Created on Tue Jan 18 09:16:58 2022
 
 #%% Librairies
 
-import fiona
 import os
 import pandas as pd
 import numpy as np
@@ -16,22 +15,14 @@ import geopandas as gpd
 import imageio
 from osgeo import gdal
 import rasterio
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.pylab as pl
-from matplotlib.font_manager import FontProperties
 import shapely
 shapely.speedups.disable()
 from os.path import dirname, abspath
 import sys
 from decimal import Decimal
 from mpl_toolkits.axes_grid1.anchored_artists import AnchoredSizeBar
-from matplotlib_scalebar.scalebar import ScaleBar
-import os
-from glob import glob
-import geopandas as gpd
-from osgeo import gdal
-import rasterio
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 
 root_dir = dirname(abspath(__file__))
@@ -128,7 +119,7 @@ def display_results_map(dem_path, data_path, out_path, site, colorbar):
     ax.set_ylim(ylim)
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
-    ax.set_title('K = '+('%.1E'%Decimal(koptim/24/3600))+' m/s'+'  -  '+'D = '+str(doptim)+' m',
+    ax.set_title('K = '+('%.1E'%Decimal(koptim/30/24/3600))+' m/s'+'  -  '+'D = '+str(doptim)+' m',
                  fontproperties=fontprop)
     xlims = ax.get_xlim()[1] - ax.get_xlim()[0]
     ylims = ax.get_ylim()[1] - ax.get_ylim()[0]
@@ -199,7 +190,7 @@ def display_results_graph(data_path, out_path, site):
         ax.plot(toplot.Kr, toplot.Oflow, c='gray', ls='-', lw=2, zorder=1, label='$D_{os}$')
         ax.plot(toplot.Kr, toplot.Sflow, c='k', ls='-', lw=2, zorder=1, label='$D_{so}$')
         
-        # ax.set_xlim(1000,10000)
+        ax.set_xlim(4000,10000)
         ax.set_xscale('log')
         ax.set_xlabel('K/R [-]')
         ax.set_ylabel('Average distance [m]')
@@ -208,11 +199,11 @@ def display_results_graph(data_path, out_path, site):
         
         y1 = np.array(df.Sflow)
         y2 = np.array(df.Oflow)
-        ax.axhline(y=ycross, ls='--', lw=2, color='dodgerblue', zorder=0, label='Distance Ɛ')
-        ax.axvline(x=xcross, ls='--', lw=2, color='darkmagenta', zorder=0, label='Optimal K/R')
+        ax.axhline(y=ycross, ls='--', lw=2, color='dodgerblue', zorder=0, label='$D_{optim}$')
+        ax.axvline(x=xcross, ls='--', lw=2, color='darkmagenta', zorder=0, label='$K/R_{optim}$')
         # ax.scatter(xcross, ycross, s=100, marker='+', color='red', lw=2, zorder=5)
         if t == 0:
-            ax.legend(loc='lower center', frameon=True)
-    
+            ax.legend(loc='lower left', frameon=True)
+                
     plt.tight_layout()
     fig.savefig(out_path+watershed_name+'/Graphical_results'+'.png', dpi=300, bbox_inches='tight', transparent=False)
