@@ -14,7 +14,7 @@ import sys
 
 #%% Librairies necessary to install for others scripts
 
-"""
+
 import flopy
 
 import glob
@@ -37,7 +37,6 @@ import matplotlib as mpl
 from matplotlib.font_manager import FontProperties
 
 from decimal import Decimal
-"""
 
 #%% Modules necessary to run the script
 
